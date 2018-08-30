@@ -1,0 +1,68 @@
+#INORDER TRAVERSAL: 
+#left subtree, root, right subtree 
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        #first left subtree, then root, then right subtree
+        l = []
+        self.inorderHelper(root, l)
+        return l 
+    
+    def inorderHelper(self, root, output):
+        if (root == None): 
+            return 
+        else: 
+            self.inorderHelper(root.left, output)
+            output.append(root.val)
+            self.inorderHelper(root.right, output)
+            
+           
+#PRE-ORDER TRAVERSAL: root, left, right 
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        l = []
+        self.preorderHelper(root, l)
+        return l
+    
+    def preorderHelper(self, root, output): 
+        if (root == None):
+            return 
+        else: 
+            output.append(root.val)
+            self.preorderHelper(root.left, output)
+            self.preorderHelper(root.right, output)
+
+#postorder: left, right, root
+class Solution(object):
+    def postorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        l = []
+        self.postorderHelper(root, l )
+        return l
+    def postorderHelper(self, root, output):
+    #left, right, root 
+        if (root == None): 
+            return
+        else:
+            self.postorderHelper(root.left, output)
+            self.postorderHelper(root.right, output)
+            output.append(root.val)
+            
+            
