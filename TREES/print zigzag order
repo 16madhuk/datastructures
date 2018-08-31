@@ -1,0 +1,32 @@
+    def zigzagLevelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if (root is None):
+            return []
+        levels = [[root.val]]
+        curLevel = [root]
+        level = 1 
+        while (len(curLevel) > 0):
+            direction = 0 if level%2 == 1 else 1
+            neighbors = []
+            for node in curLevel: 
+                rightNeighbor = node.right
+                leftNeighbor = node.left
+                if (leftNeighbor):
+                    neighbors.append(leftNeighbor)
+                if (rightNeighbor): 
+                    neighbors.append(rightNeighbor)
+            tmp = []
+            for x in neighbors:
+                tmp.append(x.val)
+            if (len(tmp) > 0):
+                if (direction == 0):
+                    levels.append(list(reversed(tmp)))
+                else:
+                    levels.append(tmp)
+            curLevel = neighbors
+            level = level+1
+
+        return levels
