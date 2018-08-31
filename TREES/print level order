@@ -1,0 +1,28 @@
+    # breadth first search kind of thing; get neighbors for each level  
+    
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if (root is None):
+            return []
+        levels = [[root.val]]
+        curLevel = [root]
+        while len(curLevel) > 0:
+            neighbors = []
+            for node in curLevel:
+                rightNeighbor = node.right
+                leftNeighbor = node.left
+                if (leftNeighbor):
+                    neighbors.append(leftNeighbor)
+                if (rightNeighbor): 
+                    neighbors.append(rightNeighbor)
+            curLevel = neighbors
+            tmp = []
+            for x in neighbors: 
+                tmp.append(x.val)
+            if (len(tmp)>0):
+                levels.append(tmp)
+        return levels
+            
