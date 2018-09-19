@@ -1,0 +1,24 @@
+
+class Solution:
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        if (root is None):
+            return None
+        elif (root.left is None and root.right is None):
+            return root 
+        r = self.helper(root)
+        return r
+        
+    def helper(self, root):
+        if (root is None):
+            return
+        else: 
+            tmp = root.left 
+            root.left = root.right 
+            root.right = tmp 
+            self.helper(root.left)
+            self.helper(root.right)
+        return root 
