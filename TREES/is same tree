@@ -1,0 +1,20 @@
+class Solution:
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        x = self.helper(p, q)
+        return x
+    def helper(self, p, q):
+        if (p is None and q is None):
+            return True
+        elif (p is None or q is None):
+            return False
+        elif(p.val != q.val):
+            return False          
+        if(self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)):
+            return True
+        return False
+        
